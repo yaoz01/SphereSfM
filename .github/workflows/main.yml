@@ -52,24 +52,17 @@ jobs:
           restore-keys: v${{ env.COMPILER_CACHE_VERSION }}-${{ matrix.config.os }}-${{ matrix.config.cmakeBuildType }}-${{ matrix.config.asanEnabled }}--${{ matrix.config.cudaEnabled }}
           path: ${{ env.COMPILER_CACHE_DIR }}
       
-- name: Install ccache
-  shell: pwsh
-  run: |
-    # 创建缓存目录
-    $env:COMPILER_CACHE_DIR = "${{ env.COMPILER_CACHE_DIR }}"
-    New-Item -ItemType Directory -Force -Path "$env:COMPILER_CACHE_DIR/bin"
+      - name: Install ccache
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path "${{ env.CCACHE_DIR }}"
+          echo "${{ env.COMPILER_CACHE_DIR }}/bin" | Out-File -Encoding utf8 -Append -FilePath $env:GITHUB_PATH
 
-    # 将缓存目录添加到 GitHub Actions 的 PATH 环境变量中
-    echo "$env:COMPILER_CACHE_DIR/bin" | Out-File -Encoding utf8 -Append -FilePath $env:GITHUB_PATH
-    
-    # 检查 ccache.exe 是否已存在
-    if (Test-Path -PathType Leaf "$env:COMPILER_CACHE_DIR/bin/ccache.exe") {
-      exit
-    }
+          if (Test-Path -PathType Leaf "${{ env.COMPILER_CACHE_DIR }}/bin/ccache.exe") {
+            exit
+          }
 
-    # 调用安装脚本
-    $scriptPath = "${{ github.workspace }}/.github/workflows/install-ccache.ps1"
-    & $scriptPath -Destination "$env:COMPILER_CACHE_DIR/bin"
+          .github/workflows/install-ccache.ps1 -Destination "${{ env.COMPILER_CACHE_DIR }}/bin"
 
       - name: Install CMake and Ninja
         uses: lukka/get-cmake@latest
