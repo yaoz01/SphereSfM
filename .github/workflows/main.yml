@@ -76,6 +76,7 @@ jobs:
           cd vcpkg
           git reset --hard ${{ env.VCPKG_COMMIT_ID }}
           ./bootstrap-vcpkg.bat
+          vcpkg install ceres
 
       - name: Configure and build
         shell: pwsh
