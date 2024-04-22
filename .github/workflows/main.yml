@@ -20,10 +20,6 @@ jobs:
             os: windows-2019,
             cmakeBuildType: Release,
           },
-          {
-            os: windows-2022,
-            cmakeBuildType: Release,
-          },
         ]
 
     env:
@@ -31,7 +27,7 @@ jobs:
       COMPILER_CACHE_DIR: ${{ github.workspace }}/compiler-cache
       CCACHE_DIR: ${{ github.workspace }}/compiler-cache/ccache
       CCACHE_BASEDIR: ${{ github.workspace }}
-      VCPKG_COMMIT_ID: 13bde2ff13192e1b2fdd37bd9b475c7665ae6ae5
+      VCPKG_COMMIT_ID: 4efb7ed628be5e56eeee009524e6ca7f3cc49c74
       VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
 
     steps:
@@ -76,7 +72,22 @@ jobs:
           cd vcpkg
           git reset --hard ${{ env.VCPKG_COMMIT_ID }}
           ./bootstrap-vcpkg.bat
-          vcpkg install ceres
+          ./vcpkg install boost-filesystem --triplet x64-windows
+          ./vcpkg install boost-graph --triplet x64-windows
+          ./vcpkg install boost-program-options --triplet x64-windows
+          ./vcpkg install boost-regex --triplet x64-windows
+          ./vcpkg install boost-system --triplet x64-windows
+          ./vcpkg install boost-test --triplet x64-windows
+          ./vcpkg install cgal --triplet x64-windows
+          ./vcpkg install eigen3 --triplet x64-windows
+          ./vcpkg install flann --triplet x64-windows
+          ./vcpkg install freeimage --triplet x64-windows
+          ./vcpkg install metis --triplet x64-windows
+          ./vcpkg install gflags --triplet x64-windows
+          ./vcpkg install glew --triplet x64-windows
+          ./vcpkg install glog --triplet x64-windows
+          ./vcpkg install qt5-base --triplet x64-windows
+          ./vcpkg install sqlite3 --triplet x64-windows
 
       - name: Configure and build
         shell: pwsh
