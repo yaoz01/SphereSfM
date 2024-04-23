@@ -158,7 +158,7 @@ BOOST_AUTO_TEST_CASE(TestEpipoleFromEssentialMatrix) {
 BOOST_AUTO_TEST_CASE(TestInvertEssentialMatrix) {
   for (size_t i = 1; i < 10; ++i) {
     const Eigen::Matrix3d R = EulerAnglesToRotationMatrix(0, 0.1, 0);
-    const Eigen::Vector3d t = Eigen::Vector3d(0, 0, i).normalized();
+    const Eigen::Vector3d t = Eigen::Vector3d(0.0, 0.0, static_cast<double>(i)).normalized();
     const Eigen::Matrix3d E = EssentialMatrixFromPose(R, t);
     const Eigen::Matrix3d inv_inv_E =
         InvertEssentialMatrix(InvertEssentialMatrix(E));
