@@ -61,6 +61,9 @@ jobs:
 
       - name: Install CMake and Ninja
         uses: lukka/get-cmake@latest
+        
+      - name: Install CMake and Ninja
+        uses: lukka/get-cmake@latest
 
       - name: Setup vcpkg
         shell: pwsh
@@ -71,22 +74,6 @@ jobs:
           cd vcpkg
           git reset --hard ${{ env.VCPKG_COMMIT_ID }}
           ./bootstrap-vcpkg.bat
-          ./vcpkg install boost-filesystem --triplet x64-windows
-          ./vcpkg install boost-graph --triplet x64-windows
-          ./vcpkg install boost-program-options --triplet x64-windows
-          ./vcpkg install boost-regex --triplet x64-windows
-          ./vcpkg install boost-system --triplet x64-windows
-          ./vcpkg install boost-test --triplet x64-windows
-          ./vcpkg install cgal --triplet x64-windows
-          ./vcpkg install eigen3 --triplet x64-windows
-          ./vcpkg install flann --triplet x64-windows
-          ./vcpkg install freeimage --triplet x64-windows
-          ./vcpkg install metis --triplet x64-windows
-          ./vcpkg install gflags --triplet x64-windows
-          ./vcpkg install glew --triplet x64-windows
-          ./vcpkg install glog --triplet x64-windows
-          ./vcpkg install qt5-base --triplet x64-windows
-          ./vcpkg install sqlite3 --triplet x64-windows
 
       - name: Configure and build
         shell: pwsh
