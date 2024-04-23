@@ -12,6 +12,9 @@
         "boost-program-options",
         "boost-property-map",
         "boost-property-tree",
+        "boost-test",
+        "boost-system",
+        "boost-regex",
         {
             "name": "ceres",
             "features": [
