@@ -27,6 +27,9 @@
         "freeimage",
         "gflags",
         "glog",
+        "glew",
+        "cgal",
+        "qt5-base",
         {
             "name": "jasper",
             "default-features": false
