@@ -5,16 +5,13 @@
     "license": "BSD-3-Clause",
     "supports": "(linux | (windows & !static) | osx) & (x86 | x64 | arm64)",
     "dependencies": [
-        "boost-algorithm",
         "boost-filesystem",
         "boost-graph",
-        "boost-heap",
         "boost-program-options",
-        "boost-property-map",
         "boost-property-tree",
-        "boost-test",
-        "boost-system",
         "boost-regex",
+        "boost-system",
+        "boost-test",
         {
             "name": "ceres",
             "features": [
@@ -22,13 +19,13 @@
                 "suitesparse"
             ]
         },
+        "cgal",
         "eigen3",
         "flann",
         "freeimage",
         "gflags",
-        "glog",
         "glew",
-        "cgal",
+        "glog",
         "qt5-base",
         {
             "name": "jasper",
